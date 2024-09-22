@@ -1,0 +1,8 @@
+{
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "printWidth": 160,
+    "semi": true,
+    "tabWidth": 4,
+    "useTabs": false
+}
