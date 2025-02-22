@@ -1,0 +1,42 @@
+services:
+  api:
+    working_dir: /usr/src/app
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+    build:
+      context: ./api
+    depends_on:
+     - database
+
+  frontend:
+    working_dir: /usr/src/app
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    build:
+      context: ./frontend
+
+  database:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_data:/data/db
+      
+  # cache:
+  #   image: "redis/redis-stack"
+  #   ports:
+  #     - "6379:6379"
+  #     - "8001:8001"
+
+volumes:
+  db_data:
+    driver: local
