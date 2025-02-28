@@ -3,7 +3,7 @@ FROM node:22-slim
 WORKDIR /usr/src/app
 
 # Install pnpm
-RUN npm install -g pnpm nodemon rimraf concurrently
+RUN npm install -g pnpm nodemon rimraf concurrently typescript
 
 # Copy only package.json and lockfile first
 COPY package*.json ./
