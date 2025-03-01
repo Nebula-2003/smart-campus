@@ -1,0 +1,1 @@
+CREATE DATABASE smart_campus;

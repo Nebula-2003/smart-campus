@@ -1,17 +1,4 @@
 services:
-  api:
-    working_dir: /usr/src/app
-    volumes:
-      - ./api:/usr/src/app
-    ports:
-      - "8080:8080"
-    environment:
-      - NODE_ENV=development
-    build:
-      context: ./api
-    depends_on:
-     - database
-
   frontend:
     working_dir: /usr/src/app
     volumes:
@@ -19,23 +6,28 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development
     build:
       context: ./frontend
 
   database:
-    image: mongo
+    image: postgres:17-alpine
     restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
     ports:
-      - "27017:27017"
+      - "5432:5432"
     volumes:
-      - db_data:/data/db
+      - db_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+
       
-  # cache:
-  #   image: "redis/redis-stack"
-  #   ports:
-  #     - "6379:6379"
-  #     - "8001:8001"
+  cache:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
 
 volumes:
   db_data:
