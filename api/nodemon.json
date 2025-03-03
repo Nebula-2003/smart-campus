@@ -1,3 +1,0 @@
-{
-    "watch": ["**/*.js", "**/*.json", "swagger.yml", ".env"]
-}
