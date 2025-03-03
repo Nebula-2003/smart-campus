@@ -1,4 +1,5 @@
 services:
+
   frontend:
     working_dir: /usr/src/app
     volumes:
@@ -22,8 +23,6 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
 
-
-      
   cache:
     image: "redis:alpine"
     ports:

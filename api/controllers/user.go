@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Nebula-2003/goJwt/config"
-	"github.com/Nebula-2003/goJwt/initializers"
-	"github.com/Nebula-2003/goJwt/models"
+	"smart-campus/api/config"
+	"smart-campus/api/initializers"
+	"smart-campus/api/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
@@ -56,7 +57,7 @@ func Register(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "User created successfully",
 		"user": gin.H{
-			"id":    user.ID,
+			"id":    user.UserID,
 			"name":  user.Name,
 			"email": user.Email,
 			"role":  user.Role,
@@ -77,7 +78,7 @@ func Login(c *gin.Context) {
 	}
 	var user models.User
 	initializers.DB.Find(&user, "email = ?", body.Email)
-	if user.ID == 0 {
+	if user.UserID == 0 {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Error finding User",
 		})
@@ -94,7 +95,7 @@ func Login(c *gin.Context) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"sub":  user.ID,
+		"sub":  user.UserID,
 		"exp":  time.Now().Add(time.Hour * 24).Unix(),
 		"role": user.Role,
 	})

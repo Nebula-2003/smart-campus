@@ -6,7 +6,11 @@
         "imageupload",
         "pino",
         "predev",
-        "Uploadthing"
+        "Uploadthing",
+        "godotenv",
+        "gonic",
+        "gorm",
+        "joho"
     ],
     "sqltools.connections": [
         {

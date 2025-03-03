@@ -1,8 +1,8 @@
 package initializers
 
-import "github.com/Nebula-2003/goJwt/models"
+import "smart-campus/api/models"
 
 func SyncDB() {
 	DB.AutoMigrate(&models.User{})
-	DB.AutoMigrate(&models.Posts{})
+	DB.AutoMigrate(&models.Assignment{})
 }

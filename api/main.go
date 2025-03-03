@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/Nebula-2003/goJwt/controllers"
-	"github.com/Nebula-2003/goJwt/initializers"
-	"github.com/Nebula-2003/goJwt/middleware"
-	"github.com/Nebula-2003/goJwt/models"
+	"smart-campus/api/controllers"
+	"smart-campus/api/initializers"
+	"smart-campus/api/middleware"
+	"smart-campus/api/models"
+
 	"github.com/gin-gonic/gin"
 )
 
