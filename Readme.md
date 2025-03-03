@@ -36,13 +36,13 @@ This PBL (Project Based Learning) initiative aims to solve communication challen
 
 ```bash
 # Clone the repository
-git clone https://github.com/Nebula-2003/smart-campus-app.git
+git clone https://github.com/Nebula-2003/smart-campus.git
 
 # Navigate to project directory
-cd smart-campus-app
+cd smart-campus
 
 # Start the containerized application
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 ## 📋 Project Status
