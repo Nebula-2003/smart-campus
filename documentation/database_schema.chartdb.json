@@ -1,8 +1,8 @@
 {
   "id": "0",
   "name": "Diagram 1",
-  "createdAt": "2025-03-03T16:10:01.899Z",
-  "updatedAt": "2025-03-03T16:10:01.899Z",
+  "createdAt": "2025-03-03T17:17:10.470Z",
+  "updatedAt": "2025-03-03T17:17:10.470Z",
   "databaseType": "postgresql",
   "tables": [
     {
@@ -457,11 +457,175 @@
       "createdAt": 1741011802630,
       "order": 3,
       "diagramId": "x6y0fmnadw7y"
+    },
+    {
+      "id": "37",
+      "name": "role_access_control",
+      "x": -93.09452351193832,
+      "y": -293.30823540169075,
+      "fields": [
+        {
+          "id": "38",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": true,
+          "nullable": false,
+          "primaryKey": true,
+          "createdAt": 1741022058592
+        },
+        {
+          "id": "39",
+          "name": "role_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": false,
+          "nullable": true,
+          "primaryKey": false,
+          "createdAt": 1741022182057
+        },
+        {
+          "id": "40",
+          "name": "module",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": false,
+          "nullable": true,
+          "primaryKey": false,
+          "createdAt": 1741022187402
+        },
+        {
+          "id": "41",
+          "name": "view",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": false,
+          "nullable": true,
+          "primaryKey": false,
+          "createdAt": 1741022196118
+        },
+        {
+          "id": "42",
+          "name": "edit",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": false,
+          "nullable": true,
+          "primaryKey": false,
+          "createdAt": 1741022201263
+        }
+      ],
+      "indexes": [],
+      "color": "#b067e9",
+      "createdAt": 1741022058592,
+      "isView": false,
+      "order": 7,
+      "schema": "public"
+    },
+    {
+      "id": "43",
+      "name": "table_9",
+      "x": 657.7144621703566,
+      "y": 427.0426988656174,
+      "fields": [
+        {
+          "id": "44",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": true,
+          "nullable": false,
+          "primaryKey": true,
+          "createdAt": 1741022058870
+        }
+      ],
+      "indexes": [],
+      "color": "#4dee8a",
+      "createdAt": 1741022058870,
+      "isView": false,
+      "order": 8,
+      "schema": "public"
+    },
+    {
+      "id": "45",
+      "name": "role_master",
+      "x": -140.1768045057834,
+      "y": -455.70641790213443,
+      "fields": [
+        {
+          "id": "46",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": true,
+          "nullable": false,
+          "primaryKey": true,
+          "createdAt": 1741022059068
+        },
+        {
+          "id": "47",
+          "name": "name",
+          "type": {
+            "name": "varchar",
+            "id": "varchar"
+          },
+          "unique": false,
+          "nullable": true,
+          "primaryKey": false,
+          "createdAt": 1741022117903
+        }
+      ],
+      "indexes": [],
+      "color": "#ff6b8a",
+      "createdAt": 1741022059068,
+      "isView": false,
+      "order": 9,
+      "schema": "public"
+    },
+    {
+      "id": "48",
+      "name": "table_11",
+      "x": 329.5265250039783,
+      "y": 415.4241755810346,
+      "fields": [
+        {
+          "id": "49",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "unique": true,
+          "nullable": false,
+          "primaryKey": true,
+          "createdAt": 1741022059363
+        }
+      ],
+      "indexes": [],
+      "color": "#c05dcf",
+      "createdAt": 1741022059363,
+      "isView": false,
+      "order": 10,
+      "schema": "public"
     }
   ],
   "relationships": [
     {
-      "id": "37",
+      "id": "50",
       "name": "class_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "1",
@@ -475,7 +639,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "38",
+      "id": "51",
       "name": "courses_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "7",
@@ -489,7 +653,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "39",
+      "id": "52",
       "name": "courses_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "7",
@@ -503,7 +667,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "40",
+      "id": "53",
       "name": "courses_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "7",
@@ -517,7 +681,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "41",
+      "id": "54",
       "name": "courses_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "7",
@@ -531,7 +695,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "42",
+      "id": "55",
       "name": "faculty_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "25",
@@ -545,7 +709,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "43",
+      "id": "56",
       "name": "faculty_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "25",
@@ -559,7 +723,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "44",
+      "id": "57",
       "name": "subjects_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "16",
@@ -573,7 +737,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "45",
+      "id": "58",
       "name": "subjects_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "16",
@@ -587,7 +751,7 @@
       "diagramId": "x6y0fmnadw7y"
     },
     {
-      "id": "46",
+      "id": "59",
       "name": "teachers_id_fk",
       "sourceSchema": "public",
       "sourceTableId": "25",
@@ -599,6 +763,32 @@
       "targetCardinality": "one",
       "createdAt": 1741013215566,
       "diagramId": "x6y0fmnadw7y"
+    },
+    {
+      "id": "60",
+      "name": "role_master_id_fk",
+      "sourceSchema": "public",
+      "sourceTableId": "45",
+      "targetSchema": "public",
+      "targetTableId": "25",
+      "sourceFieldId": "46",
+      "targetFieldId": "31",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1741022148384
+    },
+    {
+      "id": "61",
+      "name": "role_master_id_fk",
+      "sourceSchema": "public",
+      "sourceTableId": "45",
+      "targetSchema": "public",
+      "targetTableId": "37",
+      "sourceFieldId": "46",
+      "targetFieldId": "39",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1741022215561
     }
   ],
   "dependencies": []
