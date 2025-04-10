@@ -1,2 +1,6 @@
-goJwt
+api
 .env
+
+/tmp/*
+api
+/builds
