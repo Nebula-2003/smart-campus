@@ -20,9 +20,14 @@ func main() {
 	database.Connect()
 
 	admin := models.User{
-		FirstName: "Admin User",
-		Email:     "admin@sou.edu",
-		Password:  hashPassword("sou_admin"), // 👈 change this if needed
+		FirstName:  "Admin",
+		Email:      "admin@sou.edu",
+		Password:   hashPassword("sou_admin"),
+		MiddleName: "Of",
+		LastName:   "Sou",
+		FullName:   "Admin Of Sou",
+		Gender:     "Male",
+		Role:       "admin",
 	}
 
 	// Check if already exists

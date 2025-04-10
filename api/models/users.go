@@ -40,11 +40,11 @@ type User struct {
 	ParentContactNo string `json:"parent_contact_no"`
 
 	// Academic Info
-	EnrollmentNo string `gorm:"unique" json:"enrollment_no"`
-	Semester     int    `json:"semester"`
-	College      string `json:"college"`
-	Stream       string `json:"stream"`
-	Branch       string `json:"branch"`
+	// EnrollmentNo string `gorm:"autoIncrement" json:"enrollment_no"`
+	Semester int    `json:"semester"`
+	College  string `json:"college"`
+	Stream   string `json:"stream"`
+	Branch   string `json:"branch"`
 
 	// Role
 	Role Role `gorm:"type:text CHECK(role IN ('student','teacher','admin'))" json:"role"`

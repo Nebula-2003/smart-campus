@@ -4,6 +4,7 @@ import (
 	"api/database"
 	"api/models"
 	"api/utils"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
@@ -23,16 +24,20 @@ func CheckPassword(hashed, password string) bool {
 func CreateUser(c *fiber.Ctx) error {
 	user := new(models.User)
 	if err := c.BodyParser(user); err != nil {
+		fmt.Printf("%s", string(c.BodyRaw()))
+		fmt.Printf("error: %v\n", err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Cannot parse JSON"})
 	}
 
 	hash, err := HashPassword(user.Password)
 	if err != nil {
+		fmt.Printf("error: %v\n", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Hashing failed"})
 	}
 	user.Password = hash
 
 	if err := database.DB.Create(&user).Error; err != nil {
+		fmt.Printf("error: %v\n", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "User creation failed"})
 	}
 	return c.JSON(user)
@@ -65,6 +70,7 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	var input models.User
 	if err := c.BodyParser(&input); err != nil {
+		fmt.Print(err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid input"})
 	}
 
@@ -101,6 +107,7 @@ func Login(c *fiber.Ctx) error {
 
 	var user models.User
 	if err := database.DB.Where("email = ?", input.Email).First(&user).Error; err != nil {
+		println("here,1")
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid credentials"})
 	}
 
@@ -110,6 +117,7 @@ func Login(c *fiber.Ctx) error {
 
 	token, err := utils.GenerateJWT(user.ID, user.Email)
 	if err != nil {
+		println("here,2")
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Could not create token"})
 	}
 
