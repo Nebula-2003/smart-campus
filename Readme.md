@@ -54,3 +54,4 @@ Currently in active development. The team is designing APIs while frontend devel
 | Branch | Name           | Enrollment Number | Roll Number | Class | Batch |
 | ------ | -------------- | ----------------- | ----------- | ----- | ----- |
 | CSE    | Prasad Tejus R | 2201031830013     | 075         | C     | 3     |
+| CE     | Rajpara Jeel R | 2201030400113     | 021         | C     | 1     |
