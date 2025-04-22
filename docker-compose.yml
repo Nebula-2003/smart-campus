@@ -1,4 +1,14 @@
 services:
+  api:
+    working_dir: /usr/src/app
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: development
+    build:
+      context: ./api
+    depends_on:
+      - mongo
 
   frontend:
     working_dir: /usr/src/app
@@ -8,6 +18,8 @@ services:
       NODE_ENV: development
     build:
       context: ./frontend
+    depends_on:
+      - api  # frontend depends on api being up
 
   mongo:
     image: mongo

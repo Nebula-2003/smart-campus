@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "start": "pm2 start ecosystem.config.cjs",
+        "start": "pm2 start ecosystem.config.cjs && pm2 logs",
         "restart": "pm2 restart ecosystem.config.cjs",
         "stop": "pm2 stop ecosystem.config.cjs",
         "delete": "pm2 delete ecosystem.config.cjs"

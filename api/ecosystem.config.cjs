@@ -8,7 +8,7 @@ module.exports = {
 			watch: true,
 			ignore_watch: ["node_modules", "public", "logs"],
 			env_local: {
-				PORT: 8080,
+				PORT: process.env.PORT || 8080,
 				NODE_ENV: "local",
 				DOMAIN_URL: "http://127.0.0.1:8080",
 				DB_MONGO_URL: process.env.DB_MONGO_URL,
