@@ -2,20 +2,20 @@ FROM node:22-slim
 
 WORKDIR /usr/src/app
 
-# Install pnpm
 RUN npm install -g pnpm
 
-# Copy only package.json and lockfile first
+# Copy and install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN pnpm install
 
-# Copy the rest of the application code
+# Copy the full app
 COPY . .
 
-# Expose the application port
+# Build the app
+RUN pnpm run build
+
+# Expose the port
 EXPOSE 3000
 
-# Start the application
-CMD ["pnpm", "run", "dev"]
+# Run the production build
+CMD ["pnpm", "start"]
