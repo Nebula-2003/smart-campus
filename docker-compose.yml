@@ -2,8 +2,6 @@ services:
 
   frontend:
     working_dir: /usr/src/app
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - "3000:3000"
     environment:
@@ -11,22 +9,13 @@ services:
     build:
       context: ./frontend
 
-  database:
-    image: postgres:17-alpine
+  mongo:
+    image: mongo
     restart: always
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
     ports:
-      - "5432:5432"
+      - "27017:27017" 
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
-
-  cache:
-    image: "redis:alpine"
-    ports:
-      - "6379:6379"
+      - db_data:/data/db
 
 volumes:
   db_data:
