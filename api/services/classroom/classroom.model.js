@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const classroomSchema = new Schema(
     {
-        roomNumber: { type: String, required: true },
+        roomNumber: { type: Number, required: true },
         capacity: { type: Number, required: true },
         isLab: { type: Boolean, default: false },
     },

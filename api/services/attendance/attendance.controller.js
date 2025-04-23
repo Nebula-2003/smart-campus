@@ -1,16 +1,24 @@
 import { userCoreServices } from "../user/user.services.js";
 import { attendanceCoreServices } from "./attendance.services.js";
 import { lectureCoreServices } from "../lecture/lecture.services.js";
+import { classroomCoreServices } from "../classroom/classroom.services.js";
 
 export const create = async (req, res) => {
     try {
         const now = new Date();
-        const { studentRFIDCode, classroom: classroomId } = req.body;
-        if (!studentRFIDCode || !classroomId)
+        const { studentRFIDCode, roomNumber } = req.body;
+        if (!studentRFIDCode || !roomNumber)
             return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Student and class are required", data: {} });
 
-        const student = await userCoreServices.findOne({ studentRFIDCode });
-        const lecture = await lectureCoreServices.findOne({ classroom: classroomId, startTime: { $lte: now }, endTime: { $gte: now } });
+        const studentP = userCoreServices.findOne({ studentRFIDCode });
+        const classroomP = classroomCoreServices.findOne({ roomNumber });
+
+        const [student, classroom] = await Promise.all([studentP, classroomP]);
+
+        if (!student) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Student not found", data: {} });
+        if (!classroom) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Classroom not found", data: {} });
+
+        const lecture = await lectureCoreServices.findOne({ classroom: classroom._id, startTime: { $lte: now }, endTime: { $gte: now } });
 
         console.log("🚀 ~ create ~ lecture:", lecture);
         if (!student) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Student not found", data: {} });
@@ -20,7 +28,7 @@ export const create = async (req, res) => {
             timeOfAttendance: now,
             lecture: lecture._id,
             student: student._id,
-            classroom: classroomId,
+            classroom: classroom._id,
         });
 
         if (!data) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });
