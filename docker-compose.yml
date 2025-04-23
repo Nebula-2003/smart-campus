@@ -1,18 +1,18 @@
 services:
-  api:
-    working_dir: /usr/src/app
-    ports:
-      - "8080:8080"
-    environment:
-      NODE_ENV: development
-      RUNNING_IN_CONTAINER: "true"
-      DOCKER_MONGO_URI: mongodb://mongo:27017/smart-campus
-    volumes:
-      - ./api:/usr/src/app
-    build:
-      context: ./api
-    depends_on:
-      - mongo
+  # api:
+  #   working_dir: /usr/src/app
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     NODE_ENV: development
+  #     RUNNING_IN_CONTAINER: "true"
+  #     DOCKER_MONGO_URI: mongodb://mongo:27017/smart-campus
+  #   volumes:
+  #     - ./api:/usr/src/app
+  #   build:
+  #     context: ./api
+  #   depends_on:
+  #     - mongo
 
   frontend:
     working_dir: /usr/src/app
@@ -22,9 +22,7 @@ services:
       NODE_ENV: development
     build:
       context: ./frontend
-    # depends_on:
-    #   - api  # frontend depends on api being up
-
+    
   mongo:
     image: mongo
     restart: always

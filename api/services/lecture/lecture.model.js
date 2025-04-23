@@ -11,6 +11,10 @@ const lectureSchema = new Schema(
 
         classroom: { type: mongoose.Schema.Types.ObjectId, ref: "classroom", required: true },
         teacher: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
+
+        teacherEntryTime: { type: Date, required: true },
+        teacherExitTime: { type: Date, required: true },
+
         students: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     },
     { timestamps: true, collection: "lecture" },

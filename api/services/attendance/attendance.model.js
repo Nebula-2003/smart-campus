@@ -7,7 +7,8 @@ const attendanceSchema = new Schema(
     {
         timeOfAttendance: { type: Date, default: Date.now },
         lecture: { type: mongoose.Schema.Types.ObjectId, ref: "lecture", required: true },
-        student: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
+        role: { type: String, required: true, enum: ["student", "teacher"] },
         classroom: { type: mongoose.Schema.Types.ObjectId, ref: "classroom", required: true },
     },
     { timestamps: true, collection: "attendance" },
