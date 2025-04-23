@@ -1,15 +1,17 @@
-import { usersRoutes } from "../services/users/index.js";
+import usersRoutes from "../services/user/user.routes.js";
+import attendanceRoutes from "../services/attendance/attendance.routes.js";
+import lectureRoutes from "../services/lecture/lecture.routes.js";
+import classroomRoutes from "../services/classroom/classroom.routes.js";
+import subjectRoutes from "../services/subject/subject.routes.js";
 
 const initialize = (app) => {
-    app.use("/api/users", usersRoutes);
-
-    app.use("/authError", (req, res, next) => next(new Error("DEFAULT_AUTH")));
-
+    app.use("/api/user", usersRoutes);
+    app.use("/api/attendance", attendanceRoutes);
+    app.use("/api/lecture", lectureRoutes);
+    app.use("/api/classroom", classroomRoutes);
+    app.use("/api/subject", subjectRoutes);
     app.get("/ping", (req, res) => {
-        res.status(200).send({
-            success: true,
-            statusCode: 200,
-        });
+        res.status(200).send({ success: true, statusCode: 200, message: "pong" });
     });
 };
 

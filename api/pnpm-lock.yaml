@@ -20,6 +20,9 @@ importers:
       mongoose:
         specifier: 8.13.2
         version: 8.13.2
+      mongoose-delete:
+        specifier: ^1.0.2
+        version: 1.0.2(mongoose@8.13.2)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -326,6 +329,11 @@ packages:
         optional: true
       socks:
         optional: true
+
+  mongoose-delete@1.0.2:
+    resolution: {integrity: sha512-W+p9ULLiYHcEz77wQECp6gNnh2NcXf30KRIE3nAyjjsStqmBKJDL5eXTnX0xerGG2gCGx6mI7bO3+ch88tQ+tg==}
+    peerDependencies:
+      mongoose: 5.x || 6.x || 7.x || 8.x
 
   mongoose@8.13.2:
     resolution: {integrity: sha512-riCBqZmNkYBWjXpM3qWLDQw7QmTKsVZDPhLXFJqC87+OjocEVpvS3dA2BPPUiLAu+m0/QmEj5pSXKhH+/DgerQ==}
@@ -751,6 +759,10 @@ snapshots:
       '@mongodb-js/saslprep': 1.2.2
       bson: 6.10.3
       mongodb-connection-string-url: 3.0.2
+
+  mongoose-delete@1.0.2(mongoose@8.13.2):
+    dependencies:
+      mongoose: 8.13.2
 
   mongoose@8.13.2:
     dependencies:
