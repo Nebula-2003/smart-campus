@@ -36,13 +36,13 @@ This PBL (Project Based Learning) initiative aims to solve communication challen
 
 ```bash
 # Clone the repository
-git clone https://github.com/Nebula-2003/smart-campus-app.git
+git clone https://github.com/Nebula-2003/smart-campus.git
 
 # Navigate to project directory
-cd smart-campus-app
+cd smart-campus
 
 # Start the containerized application
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 ## 📋 Project Status
@@ -54,3 +54,5 @@ Currently in active development. The team is designing APIs while frontend devel
 | Branch | Name           | Enrollment Number | Roll Number | Class | Batch |
 | ------ | -------------- | ----------------- | ----------- | ----- | ----- |
 | CSE    | Prasad Tejus R | 2201031830013     | 075         | C     | 3     |
+| CE     | Rajpara Jeel R | 2201030400113     | 021         | C     | 1     |
+| CSE     | Upadhyay Jil J | 2201031800044     | 047         | C     | 2     |
