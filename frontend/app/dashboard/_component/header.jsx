@@ -38,7 +38,7 @@ const navItemsByRole = {
   ],
   teacher: [
     { href: "/dashboard/teacher", icon: Home, label: "Dashboard" },
-    { href: "#", icon: Calendar, label: "Class Schedule" },
+    { href: "/dashboard/teacher/announcements", icon: Calendar, label: "Announcements" },
     { href: "#", icon: ClipboardList, label: "Assignments Review" },
     { href: "#", icon: Bell, label: "Alerts" },
     { href: "#", icon: Settings, label: "Settings" },
