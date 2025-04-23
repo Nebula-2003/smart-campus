@@ -3,14 +3,15 @@
         "cloudinary",
         "cryptr",
         "fileupload",
-        "imageupload",
-        "pino",
-        "predev",
-        "Uploadthing",
         "godotenv",
         "gonic",
         "gorm",
-        "joho"
+        "imageupload",
+        "joho",
+        "pino",
+        "predev",
+        "RFID",
+        "Uploadthing"
     ],
     "sqltools.connections": [
         {

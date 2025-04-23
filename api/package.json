@@ -1,0 +1,28 @@
+{
+    "name": "smart-campus",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "pm2 start ecosystem.config.cjs --env local && pm2 logs",
+        "restart": "pm2 restart ecosystem.config.cjs",
+        "stop": "pm2 stop ecosystem.config.cjs",
+        "delete": "pm2 delete ecosystem.config.cjs"
+    },
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "5.1.0",
+        "jsonwebtoken": "9.0.2",
+        "mongoose": "8.13.2",
+        "mongoose-delete": "^1.0.2",
+        "pino-http": "^10.4.0"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "@biomejs/biome"
+        ]
+    }
+}
