@@ -1,14 +1,25 @@
 import mongoose from "mongoose";
 
+const print = `
+
+
+▗▖  ▗▖ ▗▄▖ ▗▖  ▗▖ ▗▄▄▖ ▗▄▖ ▗▄▄▄ ▗▄▄▖      ▗▄▄▖ ▗▄▖ ▗▖  ▗▖▗▖  ▗▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▄▄▄▖▗▄▄▄ 
+▐▛▚▞▜▌▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌ ▐▌▐▌  █▐▌ ▐▌    ▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▛▚▖▐▌▐▌   ▐▌     █  ▐▌   ▐▌  █
+▐▌  ▐▌▐▌ ▐▌▐▌ ▝▜▌▐▌▝▜▌▐▌ ▐▌▐▌  █▐▛▀▚▖    ▐▌   ▐▌ ▐▌▐▌ ▝▜▌▐▌ ▝▜▌▐▛▀▀▘▐▌     █  ▐▛▀▀▘▐▌  █
+▐▌  ▐▌▝▚▄▞▘▐▌  ▐▌▝▚▄▞▘▝▚▄▞▘▐▙▄▄▀▐▙▄▞▘    ▝▚▄▄▖▝▚▄▞▘▐▌  ▐▌▐▌  ▐▌▐▙▄▄▖▝▚▄▄▖  █  ▐▙▄▄▖▐▙▄▄▀
+                                                             
+                                                                                        
+`;
+
 const mongo_connection = async () => {
-    mongoose.set("debug", true);
     try {
-        console.log(process.env.DB_MONGO_URL);
+        mongoose.set("debug", true);
+        console.log(`MongoDB Connection URL : ${process.env.DB_MONGO_URL}`);
         await mongoose.connect(process.env.DB_MONGO_URL);
-        console.log("MongoDB Connection Established");
+        console.log(print);
     } catch (e) {
-        console.log("🚀 ~ constmongo_connection= ~ e:", e);
         console.log("MongoDB Connection Error");
+        console.log(e);
     }
 };
 
