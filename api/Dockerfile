@@ -1,9 +1,9 @@
-FROM node:22-slim
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
 # Install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm pm2 pino-pretty
 
 # Copy only package.json and lockfile first
 COPY package*.json ./
@@ -15,7 +15,7 @@ RUN pnpm install
 COPY . .
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 8080
 
 # Start the application
-CMD ["pnpm", "run", "dev"]
+CMD ["npm", "run", "start"]
