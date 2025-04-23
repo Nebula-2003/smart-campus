@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken";
-import * as commonResponse from "./commonResponse.js";
-import Users from "../services/user/user.model.js";
+import { userCoreServices } from "../services/user/user.services.js";
 
-const createToken = (user, type = "user") => {
+const SYSTEM_ROLES = ["admin", "student", "teacher"];
+
+const createToken = (user) => {
     const payload = {
         id: user._id.toString(),
         role: user.role,
@@ -15,44 +16,29 @@ const createToken = (user, type = "user") => {
     return payload;
 };
 
-const verifyJWT = (req, res) => {
+const verifyJWT = (req) => {
     try {
         const token = req.headers.authorization.replace("Bearer", "").trim();
-        console.log(token);
         const userInfo = jwt.verify(token, process.env.JWT_SECRET);
         req.user = userInfo;
-        return 1;
+        return true;
     } catch (error) {
-        return 0;
+        return false;
     }
 };
 
-const isAuthorized = (users) => async (req, res, next) => {
-    const isVerify = verifyJWT(req, res);
-    console.log("Users : ", users);
-    if (isVerify) {
-        const user = await Users.findById({ _id: req.user.id });
+const isAuthorized = (allowedRoles) => async (req, res, next) => {
+    console.log("API ACCESS ROLES : ", allowedRoles);
+    if (!verifyJWT(req)) return res.status(403).json({ code: "SESSION_EXPIRED", success: false, message: "Session expired", data: {} });
 
-        if (!user) {
-            return commonResponse.unAuthentication(res, {}, "USER_NOT_FOUND");
-        }
+    const user = await userCoreServices.findOne({ _id: req.user.id });
+    if (!user) return res.status(401).json({ code: "USER_NOT_FOUND", success: false, message: "User not found", data: {} });
 
-        const allowedRoles = ["admin", "student", "teacher"];
-        const role = req.user.role;
+    const role = req.user.role;
 
-        if (users.some((role) => allowedRoles.includes(role))) {
-            if (users.indexOf(role) > -1) {
-                next();
-            } else {
-                console.log("not allowed");
-                return commonResponse.unAuthentication(res, {}, "REQUEST_NOT_ALLOWED", 403);
-            }
-        } else {
-            return commonResponse.unAuthentication(res, {}, "REQUEST_NOT_ALLOWED");
-        }
-    } else {
-        return commonResponse.unAuthentication(res, {}, "SESSION_EXPIRED");
-    }
+    if (!SYSTEM_ROLES.includes(role)) return res.status(403).json({ code: "UNAUTHORIZED", success: false, message: "Unauthorized", data: {} });
+    if (!allowedRoles.includes(role)) return res.status(403).json({ code: "UNAUTHORIZED", success: false, message: "Unauthorized", data: {} });
+    return next();
 };
 
 export { createToken, isAuthorized };

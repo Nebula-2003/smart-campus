@@ -6,6 +6,7 @@ const router = Router();
 
 router
     .post("/", controller.create)
+    .post("/login", controller.login)
     .get("/:id", guard.isAuthorized(["admin"]), controller.get)
     .get("/", guard.isAuthorized(["admin"]), controller.list)
     .put("/:id", guard.isAuthorized(["admin"]), controller.update)

@@ -5,10 +5,8 @@ const Schema = mongoose.Schema;
 
 const subjectSchema = new Schema(
     {
-        content: {
-            type: String,
-            default: "",
-        },
+        name: { type: String, required: true },
+        code: { type: String, required: true },
     },
     { timestamps: true, collection: "subject" },
 );

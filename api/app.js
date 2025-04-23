@@ -1,5 +1,4 @@
 import express from "express";
-import * as commonResponse from "./helper/commonResponse.js";
 import * as indexRouter from "./routes/index.js";
 import { mongo_connection } from "./helper/mongodb.js";
 import pino from "pino-http";
@@ -20,7 +19,12 @@ app.use((req, res, next) => {
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    return commonResponse.error(res, error.message, error.status);
+    console.error(error);
+    res.json({
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+    });
+    next();
 });
 
 app.listen(process.env.PORT, () => {
