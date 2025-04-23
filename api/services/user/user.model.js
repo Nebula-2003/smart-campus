@@ -22,7 +22,7 @@ const userSchema = new Schema(
         stream: { type: String, required: true },
         branch: { type: String, required: true },
 
-        RFIDCode: { type: String, required: true },
+        // RFIDCode: { type: String, required: true },
 
         role: { type: String, required: true, enum: ["admin", "student", "teacher"] },
     },

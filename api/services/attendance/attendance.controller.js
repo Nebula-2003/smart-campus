@@ -3,7 +3,7 @@ import { attendanceCoreServices } from "./attendance.services.js";
 import { lectureCoreServices } from "../lecture/lecture.services.js";
 import { classroomCoreServices } from "../classroom/classroom.services.js";
 
-const closedClassroom = (RFIDCode, role) => {
+const closedClassroom = (RFIDCode, role, mode) => {
     return {
         code: "CLASSROOM_CLOSED",
         success: true,
@@ -12,15 +12,21 @@ const closedClassroom = (RFIDCode, role) => {
             isClassroomOpen: false,
             RFIDCode,
             role,
+            mode,
         },
     };
 };
 
+const errorCaseResponse = { isClassroomOpen: "", role: "" };
+
 export const create = async (req, res) => {
     try {
         const now = new Date();
-        const { RFIDCode, roomNumber } = req.body;
-        if (!roomNumber) return res.status(400).json({ code: "DATA_INVALID_ERROR", success: false, message: "roomNumber is required", data: {} });
+        const { RFIDCode, roomNumber, mode = "RFIDTags" } = req.body;
+        if (!roomNumber)
+            return res
+                .status(400)
+                .json({ code: "DATA_INVALID_ERROR", success: false, message: "roomNumber is required", data: { ...errorCaseResponse, mode } });
 
         const userP = userCoreServices.findOne({ RFIDCode });
         const classroomP = classroomCoreServices.findOne({ roomNumber });
@@ -28,13 +34,13 @@ export const create = async (req, res) => {
         const [user, classroom] = await Promise.all([userP, classroomP]);
 
         const lecture = await lectureCoreServices.findOne({ classroom: classroom._id, startTime: { $lte: now }, endTime: { $gte: now } });
-        if (!lecture) return res.status(200).json({ code: "NO_ENTRY", success: false, message: "Lecture not scheduled", data: {} });
+        if (!lecture) return res.status(200).json({ code: "NO_ENTRY", success: false, message: "Lecture not scheduled", data: { ...errorCaseResponse, mode } });
 
         console.log("🚀 ~ create ~ lecture:", lecture);
         let lectureUpdate = null;
         if (user.role === "student") {
-            if (!lecture.teacherEntryTime) return res.status(200).json(closedClassroom(RFIDCode, user.role));
-            if (lecture.teacherExitTime) return res.status(200).json(closedClassroom(RFIDCode, user.role));
+            if (!lecture.teacherEntryTime) return res.status(200).json(closedClassroom(RFIDCode, user.role, mode));
+            if (lecture.teacherExitTime) return res.status(200).json(closedClassroom(RFIDCode, user.role, mode));
         } else if (user.role === "teacher") {
             const updateData = {};
             //exit case
@@ -60,7 +66,8 @@ export const create = async (req, res) => {
             classroom: classroom._id,
             role: user.role,
         });
-        if (!data) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });
+        if (!data)
+            return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: errorCaseResponse });
         let responseData = {};
 
         if (user.role === "student") {
@@ -68,10 +75,12 @@ export const create = async (req, res) => {
                 code: "ATTENDANCE_CREATE",
                 success: true,
                 data: {
+                    previousClassroomOpen: true,
                     isClassroomOpen: true,
                     RFIDCode,
                     role: user.role,
                     studentEntryTime: now,
+                    mode,
                 },
             };
         } else if (user.role === "teacher") {
@@ -80,11 +89,13 @@ export const create = async (req, res) => {
                     code: "CLASSROOM_CLOSED",
                     success: true,
                     data: {
+                        previousClassroomOpen: true,
                         isClassroomOpen: false,
                         RFIDCode,
-                        role: user.role,
+                        role: "faculty",
                         teacherEntryTime: lectureUpdate.teacherEntryTime,
                         teacherExitTime: lectureUpdate.teacherExitTime,
+                        mode,
                     },
                 };
             } else {
@@ -92,10 +103,12 @@ export const create = async (req, res) => {
                     code: "CLASSROOM_OPENED",
                     success: true,
                     data: {
+                        previousClassroomOpen: true,
                         isClassroomOpen: true,
                         RFIDCode,
-                        role: user.role,
+                        role: "faculty",
                         teacherEntryTime: lectureUpdate.teacherEntryTime,
+                        mode,
                     },
                 };
             }
@@ -104,7 +117,9 @@ export const create = async (req, res) => {
         return res.status(200).json(responseData);
     } catch (error) {
         console.log("🚀 ~ create ~ error:", error);
-        return res.status(500).json({ code: "DEFAULT_INTERNAL_SERVER_ERROR", success: false, message: error.message, data: {} });
+        return res
+            .status(500)
+            .json({ code: "SERVER_ERROR", success: false, message: error.message, data: { ...errorCaseResponse, mode: req.body.mode || "RFIDTags" } });
     }
 };
 
