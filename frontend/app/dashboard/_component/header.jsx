@@ -13,7 +13,8 @@ import {
   Settings,
   Users,
   ClipboardList,
-  BarChart
+  BarChart,
+  FileClock
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -31,8 +32,9 @@ const navItemsByRole = {
   student: [
     { href: "/dashboard/student", icon: Home, label: "My Profile" },
     { href: "/dashboard/student/daily-updates", icon: Calendar, label: "Daily Updates" },
-    { href: "#", icon: FileText, label: "Assignments" },
-    { href: "#", icon: CreditCard, label: "Fee Transaction" },
+    { href: "/dashboard/student/assignments", icon: FileText, label: "Assignments" },
+    { href: "/dashboard/student/fees", icon: CreditCard, label: "Fee Transaction" },
+    { href: "/dashboard/student/attendance", icon: FileClock, label: "Attendance" },
     { href: "#", icon: Bell, label: "Notifications" },
     { href: "#", icon: Settings, label: "Settings" },
   ],
