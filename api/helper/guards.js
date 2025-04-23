@@ -3,19 +3,6 @@ import { userCoreServices } from "../services/user/user.services.js";
 
 const SYSTEM_ROLES = ["admin", "student", "teacher"];
 
-const createToken = (user) => {
-    const payload = {
-        id: user._id.toString(),
-        role: user.role,
-    };
-
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: process.env.EXPIRE_JWT_SECRET || "30d",
-    });
-    payload.token = token;
-    return payload;
-};
-
 const verifyJWT = (req) => {
     try {
         const token = req.headers.authorization.replace("Bearer", "").trim();
@@ -41,4 +28,4 @@ const isAuthorized = (allowedRoles) => async (req, res, next) => {
     return next();
 };
 
-export { createToken, isAuthorized };
+export { isAuthorized };
