@@ -28,7 +28,7 @@ export default function ProfileView() {
         <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="px-6 py-4 max-w-6xl mx-auto">
             <div className="flex items-center gap-2 mb-1">
-              <Link href="/" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <Link href="/dashboard/student" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                 <ChevronLeft className="h-4 w-4" />
                 <span className="sr-only">Back to Dashboard</span>
               </Link>
@@ -43,7 +43,7 @@ export default function ProfileView() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-6">
             <div className="p-6 flex flex-col md:flex-row gap-6 items-center md:items-start">
               <Avatar className="h-32 w-32 border-4 border-white shadow-md">
-                <AvatarImage src="/placeholder.svg?height=128&width=128" alt="John Doe" />
+                <AvatarImage src="/profile.jpg" alt="John Doe" />
                 <AvatarFallback className="text-3xl">JD</AvatarFallback>
               </Avatar>
               <div className="text-center md:text-left">

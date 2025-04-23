@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
-function page() {
+export default function page() {
     return (
         <div>
             <div className="relative overflow-hidden bg-gradient-to-r from-emerald-500 to-teal-600 text-white">
@@ -80,7 +80,10 @@ function page() {
                                 <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
                                     Current Semester: 5
                                 </Badge>
-                                <a href="/dashboard/profile" className="cursor-pointer flex items-center text-sm font-medium text-black hover:text-blue-600 transition-all">
+                                <a
+                                    href="/dashboard/profile"
+                                    className="cursor-pointer flex items-center text-sm font-medium text-black hover:text-blue-600 transition-all"
+                                >
                                     View More
                                     <ArrowRight className="ml-1 h-4 w-4" />
                                 </a>
@@ -93,7 +96,7 @@ function page() {
                         <CardHeader className="pb-2">
                             <div className="flex items-center justify-between">
                                 <CardTitle>Fees Due</CardTitle>
-                                <Link href="/dashboard/daily-updates" className="text-sm text-emerald-600 hover:underline">
+                                <Link href="/dashboard/student/daily-updates" className="text-sm text-emerald-600 hover:underline">
                                     See all
                                 </Link>
                             </div>
@@ -122,7 +125,7 @@ function page() {
                         <CardHeader className="pb-2">
                             <div className="flex items-center justify-between">
                                 <CardTitle>Daily News</CardTitle>
-                                <Link href="/dashboard/daily-updates" className="text-sm text-emerald-600 hover:underline">
+                                <Link href="/dashboard/student/daily-updates" className="text-sm text-emerald-600 hover:underline">
                                     See all
                                 </Link>
                             </div>
@@ -186,4 +189,4 @@ function page() {
     );
 }
 
-export default page;
+
