@@ -25,7 +25,7 @@ router.get("/ping", (req, res) => {
 });
 
 router.use((req, res) => {
-    res.json({ status: 404, message: "NOT_FOUND" });
+    res.status(404).json({ status: 404, message: "NOT_FOUND" });
 });
 
 router.use((error, req, res, next) => {
