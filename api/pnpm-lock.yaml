@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@clickhouse/client':
+        specifier: ^1.11.2
+        version: 1.11.2
       dotenv:
         specifier: ^10.0.0
         version: 10.0.0
@@ -91,6 +94,13 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@clickhouse/client-common@1.11.2':
+    resolution: {integrity: sha512-H4ECHqaipzMgiZKqpb1Z4N3Ofq+lVTCn8I59XsSynqrsfR4jWZD3PipXVvIzMpDmTMvrlJWrOwAdm0DMNiMQbA==}
+
+  '@clickhouse/client@1.11.2':
+    resolution: {integrity: sha512-ZE7Q1qxsDNXCkGPf1zqmhpZpwAKxKT+1s4Z432J1Mb2Gm26Y4tG/sJoug81AfAJTt6s7taO2vzNBAKfSR3SStg==}
+    engines: {node: '>=16'}
 
   '@mongodb-js/saslprep@1.2.2':
     resolution: {integrity: sha512-EB0O3SCSNRUFk66iRCpI+cXzIjdswfCs7F6nOC3RAGJ7xr5YhaicvsRwJ9eyzYvYRlCSDUO/c7g4yNulxKC1WA==}
@@ -587,6 +597,12 @@ snapshots:
 
   '@biomejs/cli-win32-x64@1.9.4':
     optional: true
+
+  '@clickhouse/client-common@1.11.2': {}
+
+  '@clickhouse/client@1.11.2':
+    dependencies:
+      '@clickhouse/client-common': 1.11.2
 
   '@mongodb-js/saslprep@1.2.2':
     dependencies:

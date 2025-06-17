@@ -30,7 +30,7 @@ router.use((req, res) => {
 
 router.use((error, req, res, next) => {
     res.status(error.status || 500);
-    console.error(error);
+    req.log.error(error);
     res.json({
         status: error.status || 500,
         message: error.message || "Internal Server Error",

@@ -8,7 +8,7 @@ module.exports = {
   apps: [
     {
       name: "api-smart-campus",
-      script: "node app.js",
+      script: "node app.js | pino-pretty",
       watch: true,
       ignore_watch: ["node_modules", "public", "logs"],
       env_local: {
