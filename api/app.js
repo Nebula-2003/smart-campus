@@ -1,18 +1,19 @@
 import express from "express";
-import * as indexRouter from "./routes/index.js";
-import { mongo_connection } from "./helper/mongodb.js";
-import pino from "pino-http";
+import routes from "./routes/index.js";
+import { connectToMongoDB } from "./helper/mongodb.js";
+import { reqResLogger } from "./helper/logger.js";
 
 const app = express();
 
-app.use(pino());
+app.use(reqResLogger);
 app.use(express.json());
 
-indexRouter.initialize(app);
-mongo_connection();
+connectToMongoDB();
+
+app.use(routes);
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
 
 export default app;
