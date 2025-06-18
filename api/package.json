@@ -10,12 +10,15 @@
         "delete": "pm2 delete ecosystem.config.cjs"
     },
     "dependencies": {
+        "@clickhouse/client": "^1.11.2",
         "dotenv": "^10.0.0",
         "express": "5.1.0",
         "jsonwebtoken": "9.0.2",
         "mongoose": "8.13.2",
         "mongoose-delete": "^1.0.2",
-        "pino-http": "^10.4.0"
+        "pino": "^9.7.0",
+        "pino-http": "^10.4.0",
+        "pino-loki": "^2.6.0"
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4"

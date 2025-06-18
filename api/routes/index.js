@@ -1,3 +1,5 @@
+import { Router } from "express";
+
 import usersRoutes from "../services/user/user.routes.js";
 import attendanceRoutes from "../services/attendance/attendance.routes.js";
 import lectureRoutes from "../services/lecture/lecture.routes.js";
@@ -5,34 +7,35 @@ import classroomRoutes from "../services/classroom/classroom.routes.js";
 import subjectRoutes from "../services/subject/subject.routes.js";
 import assignmentsRoutes from "../services/assignments/assignments.routes.js";
 
-const initialize = (app) => {
-    app.get("/", (req, res) => {
-        res.status(200).send({ success: true, statusCode: 200, message: "Welcome to the smart-campus api !" });
-    });
-    app.use("/api/user", usersRoutes);
-    app.use("/api/attendance", attendanceRoutes);
-    app.use("/api/lecture", lectureRoutes);
-    app.use("/api/classroom", classroomRoutes);
-    app.use("/api/subject", subjectRoutes);
-    app.use("/api/assignments", assignmentsRoutes);
-    app.get("/ping", (req, res) => {
-        res.status(200).send({ success: true, statusCode: 200, message: "pong" });
-    });
-    app.use((req, res, next) => {
-        const error = new Error("NOT_FOUND");
-        error.status = 404;
-        next(error);
-    });
+const router = new Router();
 
-    app.use((error, req, res, next) => {
-        res.status(error.status || 500);
-        console.error(error);
-        res.json({
-            status: error.status || 500,
-            message: error.message || "Internal Server Error",
-        });
-        next();
-    });
-};
+router.get("/", (req, res) => {
+    res.status(200).send({ success: true, statusCode: 200, message: "Welcome to the smart-campus api !" });
+});
 
-export { initialize };
+router.use("/api/user", usersRoutes);
+router.use("/api/attendance", attendanceRoutes);
+router.use("/api/lecture", lectureRoutes);
+router.use("/api/classroom", classroomRoutes);
+router.use("/api/subject", subjectRoutes);
+router.use("/api/assignments", assignmentsRoutes);
+
+router.get("/ping", (req, res) => {
+    res.status(200).send({ success: true, statusCode: 200, message: "pong" });
+});
+
+router.use((req, res) => {
+    res.status(404).json({ status: 404, message: "NOT_FOUND" });
+});
+
+router.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    req.log.error(error);
+    res.json({
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+    });
+    next();
+});
+
+export default router;

@@ -1,39 +1,38 @@
 services:
-  
-  api:
-    working_dir: /usr/src/app
-    ports:
-      - "8080:8080"
-    environment:
-      NODE_ENV: development
-      RUNNING_IN_CONTAINER: "true"
-      DOCKER_MONGO_URI: mongodb://mongo:27017/smart-campus
-    volumes:
-      - ./api:/usr/src/app
-    build:
-      context: ./api
-    depends_on:
-      - mongo
+    # api:
+    #   working_dir: /usr/src/app
+    #   ports:
+    #     - "8080:8080"
+    #   environment:
+    #     NODE_ENV: development
+    #     RUNNING_IN_CONTAINER: "true"
+    #     DOCKER_MONGO_URI: mongodb://mongo:27017/smart-campus
+    #   volumes:
+    #     - ./api:/usr/src/app
+    #   build:
+    #     context: ./api
+    #   depends_on:
+    #     - mongo
 
-  frontend:
-    working_dir: /usr/src/app
-    ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: development
-    volumes:
-      - ./frontend:/usr/src/app
-    build:
-      context: ./frontend
-    
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - "27017:27017" 
-    volumes:
-      - db_data:/data/db
+    # frontend:
+    #   working_dir: /usr/src/app
+    #   ports:
+    #     - "3000:3000"
+    #   environment:
+    #     NODE_ENV: development
+    #   volumes:
+    #     - ./frontend:/usr/src/app
+    #   build:
+    #     context: ./frontend
+
+    mongo:
+        image: mongo
+        restart: always
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./db_data:/data/db
 
 volumes:
-  db_data:
-    driver: local
+    db_data:
+        driver: local
