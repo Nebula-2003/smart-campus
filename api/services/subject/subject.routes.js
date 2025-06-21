@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as controller from "./subject.controller.js";
-import * as guard from "../../helper/guards.js"; // Adjust path based on your project structure
+import * as guard from "../../middleware/guards.js"; // Adjust path based on your project structure
 
 const router = Router();
 

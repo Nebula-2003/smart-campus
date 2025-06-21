@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as controller from "./classroom.controller.js";
-import * as guard from "../../helper/guards.js"; // Adjust based on where your guards are
+import * as guard from "../../middleware/guards.js"; // Adjust based on where your guards are
 
 const router = Router();
 

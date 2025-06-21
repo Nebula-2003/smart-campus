@@ -21,7 +21,7 @@ const connectToMongoDB = async () => {
         console.log("MongoDB Connection Error");
         console.log(e);
         logger.error(e, "MongoDB connection failed");
-        throw e;          // let the caller decide to exit/retry
+        throw e; // let the caller decide to exit/retry
     }
 };
 

@@ -13,16 +13,9 @@
         "RFID",
         "Uploadthing"
     ],
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "Smart Campus",
-            "database": "smart_campus",
-            "username": "myuser",
-            "password": "mypassword"
-        }
-    ]
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports.biome": "explicit",
+        "source.fixAll.biome": "explicit"
+    }
 }

@@ -1,7 +1,7 @@
 {
-    "name": "smart-campus",
+    "name": "api-smart-campus",
     "version": "0.0.0",
-    "private": true,
+    "private": false,
     "type": "module",
     "scripts": {
         "start": "pm2 start ecosystem.config.cjs --env local && pm2 logs",
@@ -10,7 +10,6 @@
         "delete": "pm2 delete ecosystem.config.cjs"
     },
     "dependencies": {
-        "@clickhouse/client": "^1.11.2",
         "dotenv": "^10.0.0",
         "express": "5.1.0",
         "jsonwebtoken": "9.0.2",
@@ -18,14 +17,7 @@
         "mongoose-delete": "^1.0.2",
         "pino": "^9.7.0",
         "pino-http": "^10.4.0",
-        "pino-loki": "^2.6.0"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.9.4"
-    },
-    "pnpm": {
-        "onlyBuiltDependencies": [
-            "@biomejs/biome"
-        ]
+        "pino-loki": "^2.6.0",
+        "zod": "^3.25.67"
     }
 }

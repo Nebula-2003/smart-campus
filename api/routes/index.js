@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import usersRoutes from "../services/user/user.routes.js";
 import attendanceRoutes from "../services/attendance/attendance.routes.js";
-import lectureRoutes from "../services/lecture/lecture.routes.js";
+import timeTableRoutes from "../services/timeTable/timeTable.routes.js";
 import classroomRoutes from "../services/classroom/classroom.routes.js";
 import subjectRoutes from "../services/subject/subject.routes.js";
 import assignmentsRoutes from "../services/assignments/assignments.routes.js";
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
 router.use("/api/user", usersRoutes);
 router.use("/api/attendance", attendanceRoutes);
-router.use("/api/lecture", lectureRoutes);
+router.use("/api/timeTable", timeTableRoutes);
 router.use("/api/classroom", classroomRoutes);
 router.use("/api/subject", subjectRoutes);
 router.use("/api/assignments", assignmentsRoutes);

@@ -1,4 +1,4 @@
-import { hashPassword, matchPassword, mintJWT } from "../../helper/functions.js";
+import { hashPassword, matchPassword, mintJWT } from "../../helper/utils.js";
 import { userCoreServices } from "./user.services.js";
 
 export const create = async (req, res) => {
@@ -22,7 +22,6 @@ export const create = async (req, res) => {
         } = req.body;
 
         const hashedPassword = await hashPassword(unHashedPassword);
-        console.log("🚀 ~ create ~ hashedPassword:", hashedPassword);
         const data = await userCoreServices.add({
             firstName,
             middleName,
@@ -53,8 +52,7 @@ export const login = async (req, res) => {
         if (!user) return res.status(400).json({ code: "USER_NOT_FOUND", success: false, message: "User not found", data: {} });
         const isMatch = await matchPassword(req.body.password, user.password);
         if (!isMatch) return res.status(400).json({ code: "INVALID_PASSWORD", success: false, message: "Invalid password", data: {} });
-        const { password, ...userData } = user;
-        if (!user) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });
+        const { password: _password, ...userData } = user;
         return res.status(200).json({ code: "USER_GET", success: true, data: { ...userData, token: mintJWT(user) } });
     } catch (error) {
         return res.status(500).json({ code: "DEFAULT_INTERNAL_SERVER_ERROR", success: false, message: error.message, data: {} });

@@ -31,8 +31,7 @@ services:
         ports:
             - "27017:27017"
         volumes:
-            - ./db_data:/data/db
-
+            - ./db_data:/data/db # <--- This line is key!
 volumes:
     db_data:
         driver: local

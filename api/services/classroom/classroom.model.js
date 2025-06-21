@@ -7,6 +7,7 @@ const classroomSchema = new Schema(
         roomNumber: { type: Number, required: true },
         capacity: { type: Number, required: true },
         isLab: { type: Boolean, default: false },
+        scannerId: { type: mongoose.Schema.Types.ObjectId, ref: "scanner", required: true },
     },
     { timestamps: true, collection: "classroom" },
 );
