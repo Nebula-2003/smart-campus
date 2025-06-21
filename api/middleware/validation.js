@@ -34,7 +34,7 @@ export const validation = {
                 });
             }
 
-            req.params = result.data;
+            req.query = result.data;
             next();
         };
     },

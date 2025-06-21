@@ -1,9 +1,6 @@
-import { userCoreServices } from "../user/user.services.js";
 import { attendanceCoreServices } from "./attendance.services.js";
-import { timeTableCoreServices } from "../timeTable/timeTable.services.js";
-import { classroomCoreServices } from "../classroom/classroom.services.js";
 
-export const nfcScanner = async () => {
+export const create = async () => {
     try {
         const data = await attendanceCoreServices.findOne(req.params.id);
         if (!data) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });

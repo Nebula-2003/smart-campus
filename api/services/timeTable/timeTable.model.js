@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import softDelete from "mongoose-delete";
+
 const Schema = mongoose.Schema;
 
 const timeTableSchema = new Schema(
@@ -11,9 +12,8 @@ const timeTableSchema = new Schema(
 
         classroom: { type: mongoose.Schema.Types.ObjectId, ref: "classroom", required: true },
         teacher: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
-
-        teacherEntryTime: { type: Date, required: true },
-        teacherExitTime: { type: Date, required: true },
+        teacherEntryTime: { type: Date },
+        teacherExitTime: { type: Date },
     },
     { timestamps: true, collection: "timeTable" },
 );

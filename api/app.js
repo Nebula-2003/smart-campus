@@ -1,8 +1,7 @@
 import express from "express";
-import routes from "./routes/index.js";
+import logger, { reqResLogger } from "./helper/logger.js";
 import { connectToMongoDB } from "./helper/mongodb.js";
-import { reqResLogger } from "./helper/logger.js";
-import logger from "./helper/logger.js";
+import routes from "./routes/index.js";
 
 const app = express();
 
