@@ -5,6 +5,7 @@ const SYSTEM_ROLES = ["admin", "student", "teacher"];
 
 const verifyJWT = (req) => {
   try {
+    if (!req.headers.authorization) return false;
     const token = req.headers.authorization.replace("Bearer", "").trim();
     const userInfo = jwt.verify(token, process.env.JWT_SECRET);
     req.user = userInfo;
