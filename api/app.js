@@ -13,9 +13,7 @@ const start = async () => {
   try {
     await connectToMongoDB();
     app.use(routes);
-    app.listen(process.env.PORT, () =>
-      logger.info(`Server running on port ${process.env.PORT}`),
-    );
+    app.listen(process.env.PORT, () => logger.info(`Server running on port ${process.env.PORT}`));
   } catch (err) {
     logger.fatal(err, "Unable to start server");
     process.exit(1);

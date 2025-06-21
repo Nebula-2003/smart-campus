@@ -18,7 +18,8 @@
         "mongoose-delete": "^1.0.2",
         "pino": "^9.7.0",
         "pino-http": "^10.4.0",
-        "pino-loki": "^2.6.0"
+        "pino-loki": "^2.6.0",
+        "zod": "^3.25.67"
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4"

@@ -1,11 +1,11 @@
 import { Router } from "express";
 import * as controller from "./attendance.controller.js";
-import * as guard from "../../helper/guards.js";
+import * as guard from "../../middleware/guards.js";
 
 const router = Router();
 
 router
-  .post("/", controller.create)
+  .post("/nfc-scanner", controller.nfcScanner)
   .get("/:id", guard.isAuthorized(["student", "teacher", "admin"]), controller.get)
   .get("/", guard.isAuthorized(["student", "teacher", "admin"]), controller.list)
   .put("/:id", guard.isAuthorized(["student", "teacher", "admin"]), controller.update)
