@@ -5,10 +5,10 @@ import * as guard from "../../middleware/guards.js";
 const router = Router();
 
 router
-  .post("/", guard.isAuthorized(["admin"]), controller.create)
-  .get("/:id", guard.isAuthorized(["admin", "teacher"]), controller.get)
-  .get("/", guard.isAuthorized(["admin", "teacher"]), controller.list)
-  .put("/:id", guard.isAuthorized(["admin"]), controller.update)
-  .delete("/:id", guard.isAuthorized(["admin"]), controller.remove);
+    .post("/", guard.isAuthorized(["admin"]), controller.create)
+    .get("/:id", guard.isAuthorized(["admin", "teacher"]), controller.get)
+    .get("/", guard.isAuthorized(["admin", "teacher"]), controller.list)
+    .put("/:id", guard.isAuthorized(["admin"]), controller.update)
+    .delete("/:id", guard.isAuthorized(["admin"]), controller.remove);
 
 export default router;

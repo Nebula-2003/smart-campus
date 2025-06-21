@@ -10,7 +10,7 @@ import assignmentsRoutes from "../services/assignments/assignments.routes.js";
 const router = new Router();
 
 router.get("/", (req, res) => {
-  res.status(200).send({ success: true, statusCode: 200, message: "Welcome to the smart-campus api !" });
+    res.status(200).send({ success: true, statusCode: 200, message: "Welcome to the smart-campus api !" });
 });
 
 router.use("/api/user", usersRoutes);
@@ -21,21 +21,21 @@ router.use("/api/subject", subjectRoutes);
 router.use("/api/assignments", assignmentsRoutes);
 
 router.get("/ping", (req, res) => {
-  res.status(200).send({ success: true, statusCode: 200, message: "pong" });
+    res.status(200).send({ success: true, statusCode: 200, message: "pong" });
 });
 
 router.use((req, res) => {
-  res.status(404).json({ status: 404, message: "NOT_FOUND" });
+    res.status(404).json({ status: 404, message: "NOT_FOUND" });
 });
 
 router.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  req.log.error(error);
-  res.json({
-    status: error.status || 500,
-    message: error.message || "Internal Server Error",
-  });
-  next();
+    res.status(error.status || 500);
+    req.log.error(error);
+    res.json({
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+    });
+    next();
 });
 
 export default router;

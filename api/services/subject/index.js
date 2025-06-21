@@ -1,4 +1,4 @@
-import subjectRoutes from './subject.routes';
-import subjectServices from './subject.services';
+import subjectRoutes from "./subject.routes";
+import subjectServices from "./subject.services";
 
-export default  {subjectRoutes , subjectServices}
+export default { subjectRoutes, subjectServices };
