@@ -1,30 +1,32 @@
 import { Router } from "express";
-
-import usersRoutes from "../services/user/user.routes.js";
-import attendanceRoutes from "../services/attendance/attendance.routes.js";
-import timeTableRoutes from "../services/timeTable/timeTable.routes.js";
-import classroomRoutes from "../services/classroom/classroom.routes.js";
-import subjectRoutes from "../services/subject/subject.routes.js";
 import assignmentsRoutes from "../services/assignments/assignments.routes.js";
+import attendanceRoutes from "../services/attendance/attendance.routes.js";
+import classroomRoutes from "../services/classroom/classroom.routes.js";
+import nfcReadersEntriesRoutes from "../services/nfcReaderEntries/nfcReaderEntries.routes.js";
+import subjectRoutes from "../services/subject/subject.routes.js";
+import timeTableRoutes from "../services/timeTable/timeTable.routes.js";
+import usersRoutes from "../services/user/user.routes.js";
 
 const router = new Router();
 
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
     res.status(200).send({ success: true, statusCode: 200, message: "Welcome to the smart-campus api !" });
 });
 
-router.use("/api/user", usersRoutes);
-router.use("/api/attendance", attendanceRoutes);
-router.use("/api/timeTable", timeTableRoutes);
-router.use("/api/classroom", classroomRoutes);
-router.use("/api/subject", subjectRoutes);
-router.use("/api/assignments", assignmentsRoutes);
+router
+    .use("/api/user", usersRoutes)
+    .use("/api/attendance", attendanceRoutes)
+    .use("/api/nfc-reader", nfcReadersEntriesRoutes)
+    .use("/api/timeTable", timeTableRoutes)
+    .use("/api/classroom", classroomRoutes)
+    .use("/api/subject", subjectRoutes)
+    .use("/api/assignments", assignmentsRoutes);
 
-router.get("/ping", (req, res) => {
+router.get("/ping", (_req, res) => {
     res.status(200).send({ success: true, statusCode: 200, message: "pong" });
 });
 
-router.use((req, res) => {
+router.use((_req, res) => {
     res.status(404).json({ status: 404, message: "NOT_FOUND" });
 });
 

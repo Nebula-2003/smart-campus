@@ -10,6 +10,7 @@
         "delete": "pm2 delete ecosystem.config.cjs"
     },
     "dependencies": {
+        "bullmq": "^5.55.0",
         "dotenv": "^10.0.0",
         "express": "5.1.0",
         "jsonwebtoken": "9.0.2",
@@ -19,5 +20,10 @@
         "pino-http": "^10.4.0",
         "pino-loki": "^2.6.0",
         "zod": "^3.25.67"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "msgpackr-extract"
+        ]
     }
 }
