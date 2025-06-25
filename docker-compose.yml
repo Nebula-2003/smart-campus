@@ -24,7 +24,16 @@ services:
     #     - ./frontend:/usr/src/app
     #   build:
     #     context: ./frontend
+    redisinsight:
+        image: redis/redisinsight:latest
+        ports:
+          - "5540:5540"
+        restart: unless-stopped
 
+    redis:
+        image: redis:8.0.2-alpine # Specifies the official Redis Docker image
+        ports:
+            - "6379:6379"
     mongo:
         image: mongo
         restart: always
