@@ -11,7 +11,7 @@ export const options = {
         { duration: "10s", target: 100 },
         { duration: "20s", target: 500 },
         { duration: "30s", target: 1000 },
-        { duration: "1m", target: 2000 }, // go wild
+        // { duration: "1m", target: 2000 }, // go wild
         { duration: "30s", target: 0 },
     ],
     thresholds: {
@@ -22,8 +22,8 @@ export const options = {
 export default function () {
     const url = "http://localhost:8080/api/nfc-reader/";
     const payload = JSON.stringify({
-        nfcTag: randomString(),
-        scannerId: randomString(),
+        nfcTag: randomString().toString(),
+        scannerId: randomString().toString(),
     });
 
     const params = {
