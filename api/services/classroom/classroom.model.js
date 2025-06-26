@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import softDelete from "mongoose-delete";
+
 const Schema = mongoose.Schema;
 
 const classroomSchema = new Schema(

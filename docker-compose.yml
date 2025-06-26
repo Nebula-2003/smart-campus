@@ -1,16 +1,16 @@
 services:
-    api:
-      working_dir: /usr/src/app
-      ports:
-        - "8080:8080"
-      env_file:
-      - .env.local
-      volumes:
-        - ./api:/usr/src/app
-      build:
-        context: ./api
-      depends_on:
-        - mongo
+    # api:
+    #   working_dir: /usr/src/app
+    #   ports:
+    #     - "8080:8080"
+    #   env_file:
+    #   - .env.local
+    #   volumes:
+    #     - ./api:/usr/src/app
+    #   build:
+    #     context: ./api
+    #   depends_on:
+    #     - mongo
 
     # frontend:
     #   working_dir: /usr/src/app

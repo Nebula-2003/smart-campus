@@ -3,42 +3,10 @@ import { userCoreServices } from "./user.services.js";
 
 export const create = async (req, res) => {
     try {
-        const {
-            firstName,
-            middleName,
-            lastName,
-            gender,
-            dob,
-            email,
-            password: unHashedPassword,
-            address,
-            contactNo,
-            parentContactNo,
-            semester,
-            college,
-            stream,
-            branch,
-            role,
-        } = req.body;
-
+        const { password: unHashedPassword } = req.body;
         const hashedPassword = await hashPassword(unHashedPassword);
-        const data = await userCoreServices.add({
-            firstName,
-            middleName,
-            lastName,
-            gender,
-            dob: new Date(dob),
-            email,
-            password: hashedPassword,
-            address,
-            contactNo,
-            parentContactNo,
-            semester,
-            college,
-            stream,
-            branch,
-            role,
-        });
+        Object.assign(req.body, { password: hashedPassword });
+        const data = await userCoreServices.add(req.body);
         if (!data) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });
         return res.status(200).json({ code: "USER_CREATE", success: true, data });
     } catch (error) {

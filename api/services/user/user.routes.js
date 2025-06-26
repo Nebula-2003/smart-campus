@@ -1,11 +1,11 @@
 import { Router } from "express";
-import * as controller from "./user.controller.js";
 import * as guard from "../../middleware/guards.js";
+import * as controller from "./user.controller.js";
 
 const router = Router();
 
 router
-    .post("/", controller.create)
+    .post("/", guard.isAuthorized(["admin", "teachers"]), controller.create)
     .post("/login", controller.login)
     .get("/:id", guard.isAuthorized(["admin"]), controller.get)
     .get("/", guard.isAuthorized(["admin"]), controller.list)
