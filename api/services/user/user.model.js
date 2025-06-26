@@ -29,7 +29,7 @@ const userSchema = new Schema(
         parentContactNo: { type: String, required: false },
         semester: { type: Number, required: false, enum: ["1", "2", "3", "4", "5", "6", "7", "8"] },
     },
-    { timestamps: true, collection: "user" },
+    { timestamps: true, collection: "users" },
 );
 
 userSchema.plugin(softDelete, { overrideMethods: "all" });
