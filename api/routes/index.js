@@ -4,6 +4,7 @@ import attendanceRoutes from "../services/attendance/attendance.routes.js";
 import classroomRoutes from "../services/classroom/classroom.routes.js";
 import nfcReadersEntriesRoutes from "../services/nfcReaderEntries/nfcReaderEntries.routes.js";
 import scannerRoutes from "../services/scanner/scanner.routes.js";
+import studentTimeTableRoutes from "../services/studentTimeTable/studentTimeTable.routes.js";
 import subjectRoutes from "../services/subject/subject.routes.js";
 import timeTableRoutes from "../services/timeTable/timeTable.routes.js";
 import usersRoutes from "../services/user/user.routes.js";
@@ -20,6 +21,7 @@ router
     .use("/api/classroom", classroomRoutes)
     .use("/api/nfc-reader", nfcReadersEntriesRoutes)
     .use("/api/timeTable", timeTableRoutes)
+    .use("/api/student-timetable", studentTimeTableRoutes)
     .use("/api/subject", subjectRoutes)
     .use("/api/scanner", scannerRoutes)
     .use("/api/user", usersRoutes);

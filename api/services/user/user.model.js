@@ -33,6 +33,6 @@ const userSchema = new Schema(
 );
 
 userSchema.plugin(softDelete, { overrideMethods: "all" });
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("users", userSchema);
 
 export default User;
