@@ -6,9 +6,11 @@ const queuePersistNfcReaderStream = new Queue("persist_nfc_reader_stream", { con
 
 export const create = async (req, res) => {
     try {
+        const now = new Date().toISOString();
+
         const [processResult, persistResult] = await Promise.all([
-            queueProcessNfcReaderStream.add("job", req.body),
-            queuePersistNfcReaderStream.add("job", req.body),
+            queueProcessNfcReaderStream.add("process_nfc_reader_stream", { ...req.body, entryTime: now }),
+            queuePersistNfcReaderStream.add("persist_nfc_reader_stream", { ...req.body, entryTime: now }),
         ]);
 
         if (!processResult || !persistResult) {

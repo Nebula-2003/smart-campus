@@ -7,7 +7,7 @@ const nfcReaderEntrySchema = new Schema(
     {
         entryTime: { type: Date, default: Date.now },
         nfcTag: { type: String, required: true },
-        scannerId: { type: String, ref: "scanner", required: true },
+        scanner: { type: String, ref: "scanner", required: true },
     },
     { collection: "nfcReaderEntries" },
 );

@@ -4,6 +4,7 @@
     "@biomejs/biome": "2.0.0"
   },
   "scripts": {
+    "preserver": "docker compose up -d",
     "server": "cd ./api && npm start"
   },
   "pnpm": {
