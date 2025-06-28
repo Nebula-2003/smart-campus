@@ -15,8 +15,8 @@ A comprehensive platform integrating all college communications with better sear
 ## 💻 Tech Stack
 
 * **Frontend** : Next.js
-* **Backend** : Go
-* **Database** : PostgreSQL
+* **Backend** : NodeJS(Express)
+* **Database** : MongoDB
 * **Search Engine** : Elasticsearch
 * **Caching** : Redis
 * **Containerization** : Docker

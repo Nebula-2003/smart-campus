@@ -3,10 +3,8 @@ services:
     #   working_dir: /usr/src/app
     #   ports:
     #     - "8080:8080"
-    #   environment:
-    #     NODE_ENV: development
-    #     RUNNING_IN_CONTAINER: "true"
-    #     DOCKER_MONGO_URI: mongodb://mongo:27017/smart-campus
+    #   env_file:
+    #   - .env.local
     #   volumes:
     #     - ./api:/usr/src/app
     #   build:
@@ -24,23 +22,24 @@ services:
     #     - ./frontend:/usr/src/app
     #   build:
     #     context: ./frontend
+    
     redisinsight:
-        image: redis/redisinsight:latest
+        image: redis/redisinsight:2.70
         ports:
           - "5540:5540"
-        restart: unless-stopped
 
     redis:
-        image: redis:8.0.2-alpine # Specifies the official Redis Docker image
+        image: redis:8.0.2-alpine
         ports:
             - "6379:6379"
+
     mongo:
         image: mongo
         restart: always
         ports:
             - "27017:27017"
         volumes:
-            - ./db_data:/data/db # <--- This line is key!
+            - ./db_data:/data/db
 volumes:
     db_data:
         driver: local

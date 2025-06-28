@@ -3,6 +3,11 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.0"
   },
+  "scripts": {
+    "preserver": "docker compose up -d",
+    "server": "cd ./api && npm start",
+    "docs:dev": "cd ./docs && npm run start"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome"

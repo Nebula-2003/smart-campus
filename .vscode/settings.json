@@ -11,8 +11,10 @@
         "joho",
         "pino",
         "predev",
+        "redisinsight",
         "RFID",
-        "Uploadthing"
+        "Uploadthing",
+        "wlogger"
     ],
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
