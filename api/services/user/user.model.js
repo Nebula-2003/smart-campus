@@ -27,7 +27,7 @@ const userSchema = new Schema(
 
         // Only for students
         parentContactNo: { type: String, required: false },
-        semester: { type: Number, required: false, enum: ["1", "2", "3", "4", "5", "6", "7", "8"] },
+        semester: { type: Number, required: false, enum: [1, 2, 3, 4, 5, 6, 7, 8] },
     },
     { timestamps: true, collection: "users" },
 );

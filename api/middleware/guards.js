@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import logger from "../helper/logger.js";
 import { userCoreServices } from "../services/user/user.services.js";
 
 const SYSTEM_ROLES = ["admin", "student", "teacher"];
@@ -22,7 +23,7 @@ export const isAuthorized = (allowedRoles) => async (req, res, next) => {
 
     try {
         const user = await userCoreServices.findOne({ _id: req.user.id });
-        console.log("🚀 ~ isAuthorized ~ user:", user);
+        logger.info(`[AUTH] : ${JSON.stringify(user)}`);
         if (!user) return res.status(401).json({ code: "USER_NOT_FOUND", success: false, message: "User not found", data: {} });
     } catch {
         return res.status(500).json({ code: "DATABASE_ERROR", success: false, message: "Database connection error", data: {} });

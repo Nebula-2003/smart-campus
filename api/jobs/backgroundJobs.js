@@ -63,6 +63,16 @@ const processNfcReaderStreamWorker = new Worker(
                 return;
             }
 
+            if (!classroom) {
+                logger.info("[Worker:process_nfc_reader_stream] INVALID CLASSROOM FOR SCANNER");
+                return;
+            }
+
+            if (!student) {
+                logger.info("[Worker:process_nfc_reader_stream] INVALID NFC TAG");
+                return;
+            }
+
             const timetable = await timeTableCoreServices.findOne({
                 classroom: classroom._id,
                 startTime: { $lte: entryTime },
