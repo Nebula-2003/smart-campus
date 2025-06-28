@@ -5,7 +5,8 @@
   },
   "scripts": {
     "preserver": "docker compose up -d",
-    "server": "cd ./api && npm start"
+    "server": "cd ./api && npm start",
+    "docs:dev": "cd ./docs && npm run start"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
