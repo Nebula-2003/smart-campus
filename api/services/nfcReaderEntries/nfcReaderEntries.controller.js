@@ -6,33 +6,19 @@ const queuePersistNfcReaderStream = new Queue("persist_nfc_reader_stream", { con
 
 export const create = async (req, res) => {
     try {
-// Before
-// const [data] = await Promise.all([
-//   queueProcessNfcReaderStream.add("tbd", req.body),
-//   queuePersistNfcReaderStream.add("tbd", req.body)
-// ]);
-// if (!data) return res.status(400).json({
-//   code: "SERVER_ERROR",
-//   success: false,
-//   message: "Something went wrong, please try again",
-//   data: {}
-// });
+        const [processResult, persistResult] = await Promise.all([
+            queueProcessNfcReaderStream.add("job", req.body),
+            queuePersistNfcReaderStream.add("job", req.body),
+        ]);
 
-// After
-const [processResult, persistResult] = await Promise.all([
-  queueProcessNfcReaderStream.add("tbd", req.body),
-  queuePersistNfcReaderStream.add("tbd", req.body),
-]);
-
-if (!processResult || !persistResult) {
-  return res.status(400).json({
-    code: "SERVER_ERROR",
-    success: false,
-    message: "Failed to enqueue job",
-    data: {}
-  });
-}
-        if (!data) return res.status(400).json({ code: "SERVER_ERROR", success: false, message: "Something went wrong, please try again", data: {} });
+        if (!processResult || !persistResult) {
+            return res.status(500).json({
+                code: "SERVER_ERROR",
+                success: false,
+                message: "Failed to enqueue job",
+                data: {},
+            });
+        }
         return res.status(200).json({ code: "ENTRY_CREATE", success: true });
     } catch (error) {
         console.log("🚀 ~ create ~ error:", error);
