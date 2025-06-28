@@ -5,8 +5,8 @@ import { themes as prismThemes } from "prism-react-renderer";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-    title: "My Site",
-    tagline: "Dinosaurs are cool",
+    title: "Smart Campus",
+    tagline: "Campus life is cool",
     favicon: "img/favicon.ico",
 
     // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,7 +15,7 @@ const config: Config = {
     },
 
     // Set the production url of your site here
-    url: "https://your-docusaurus-site.example.com",
+    url: "https://smart-campus-4ut.pages.dev/",
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: "/",
@@ -72,7 +72,7 @@ const config: Config = {
                     type: "docSidebar",
                     sidebarId: "tutorialSidebar",
                     position: "left",
-                    label: "Tutorial",
+                    label: "Docs",
                 },
                 {
                     href: "https://github.com/Nebula-2003/smart-campus/",
@@ -88,7 +88,7 @@ const config: Config = {
                     title: "Docs",
                     items: [
                         {
-                            label: "Tutorial",
+                            label: "Docs Intro",
                             to: "/docs/intro",
                         },
                     ],
