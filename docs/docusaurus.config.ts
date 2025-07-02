@@ -59,7 +59,29 @@ const config: Config = {
     ],
 
     themeConfig: {
-        // Replace with your project's social card
+        algolia: {
+            // The application ID provided by Algolia
+            appId: "9ZSM7T2ASR",
+
+            // Public API key: it is safe to commit it
+            apiKey: "8381a966d11c25e247cdd38a64a2a5a9",
+
+            indexName: "smart-campus-4ut",
+
+            // Optional: see doc section below
+            contextualSearch: true,
+
+            // Optional: Algolia search parameters
+            searchParameters: {},
+
+            // Optional: path for search page that enabled by default (`false` to disable it)
+            searchPagePath: "search",
+
+            // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
+            insights: false,
+
+            //... other Algolia params
+        },
         image: "img/docusaurus-social-card.jpg",
         navbar: {
             title: "Smart Campus",
