@@ -1,6 +1,6 @@
 import { Router } from "express";
-import * as controller from "./scanner.controller.js";
 import * as guard from "../../middleware/guards.js";
+import * as controller from "./scanner.controller.js";
 
 const router = Router();
 
